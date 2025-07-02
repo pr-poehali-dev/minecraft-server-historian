@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import Icon from "@/components/ui/icon";
+import { Link } from "react-router-dom";
 
 const epochs = [
   {
@@ -10,6 +11,7 @@ const epochs = [
     color: "from-stone-600 to-stone-700",
     textColor: "text-stone-100",
     description: "Первые орудия труда, охота и собирательство",
+    route: "/epochs/stone-age",
   },
   {
     id: 2,
@@ -19,6 +21,7 @@ const epochs = [
     color: "from-amber-600 to-amber-700",
     textColor: "text-amber-100",
     description: "Первые металлы, письменность и города",
+    route: "/epochs/bronze-age",
   },
   {
     id: 3,
@@ -84,46 +87,45 @@ export default function EpochsTimeline() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {epochs.map((epoch, index) => (
-            <Card
-              key={epoch.id}
-              className="group hover:scale-105 transition-all duration-300 cursor-pointer overflow-hidden"
-            >
-              <CardContent
-                className={`p-0 bg-gradient-to-br ${epoch.color} text-white h-80`}
-              >
-                <div className="p-6 h-full flex flex-col justify-between">
-                  <div>
-                    <div className="mb-4">
-                      <Icon
-                        name={epoch.icon}
-                        size={48}
-                        className={`${epoch.textColor} group-hover:scale-110 transition-transform duration-300`}
-                      />
+            <Link key={epoch.id} to={epoch.route || "#"}>
+              <Card className="group hover:scale-105 transition-all duration-300 cursor-pointer overflow-hidden">
+                <CardContent
+                  className={`p-0 bg-gradient-to-br ${epoch.color} text-white h-80`}
+                >
+                  <div className="p-6 h-full flex flex-col justify-between">
+                    <div>
+                      <div className="mb-4">
+                        <Icon
+                          name={epoch.icon}
+                          size={48}
+                          className={`${epoch.textColor} group-hover:scale-110 transition-transform duration-300`}
+                        />
+                      </div>
+                      <h3 className="text-xl font-bold mb-2">{epoch.name}</h3>
+                      <p className="text-sm opacity-80 mb-3">{epoch.period}</p>
+                      <p className="text-sm leading-relaxed">
+                        {epoch.description}
+                      </p>
                     </div>
-                    <h3 className="text-xl font-bold mb-2">{epoch.name}</h3>
-                    <p className="text-sm opacity-80 mb-3">{epoch.period}</p>
-                    <p className="text-sm leading-relaxed">
-                      {epoch.description}
-                    </p>
-                  </div>
 
-                  <div className="flex items-center justify-between mt-4">
-                    <span className="text-sm font-semibold opacity-80">
-                      Эпоха {epoch.id}
-                    </span>
-                    <div
-                      className={`w-8 h-8 rounded-full bg-white bg-opacity-20 flex items-center justify-center`}
-                    >
-                      <Icon
-                        name="ChevronRight"
-                        size={16}
-                        className="text-white"
-                      />
+                    <div className="flex items-center justify-between mt-4">
+                      <span className="text-sm font-semibold opacity-80">
+                        Эпоха {epoch.id}
+                      </span>
+                      <div
+                        className={`w-8 h-8 rounded-full bg-white bg-opacity-20 flex items-center justify-center`}
+                      >
+                        <Icon
+                          name="ChevronRight"
+                          size={16}
+                          className="text-white"
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
+            </Link>
           ))}
         </div>
 
