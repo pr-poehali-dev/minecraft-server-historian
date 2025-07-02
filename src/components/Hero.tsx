@@ -55,9 +55,10 @@ export default function Hero() {
             variant="outline"
             size="lg"
             className="border-white text-white hover:bg-white hover:text-green-800 font-semibold px-8 py-4"
+            onClick={() => (window.location.href = "/rules")}
           >
             <Icon name="BookOpen" className="mr-2" size={20} />
-            Узнать больше
+            Правила игры
           </Button>
         </div>
 
